@@ -2,14 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Three.js Tutorials by Sean Bradley : https://sbcode.net/threejs/</title>
+        <title>Visualizer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <style>
+        <!-- <style>
             body {
                 overflow: hidden;
                 margin: 0px;
             }
-        </style>
+        </style> -->
+
+        <link rel="stylesheet" href="style.css">
 
         <!-- Import maps polyfill -->
         <!-- Remove this when import maps will be widely supported -->
@@ -28,6 +30,25 @@
     </head>
 
     <body>
-        <script type="module" src="client.js"></script>
+        <div class="container">
+            <h1 class="title">Visualizer Examples</h1>
+            <div class="card-container">
+                <div class="card">
+                    <img src="assets/City1.png" alt="City Buildings Only" class="card-img">
+                    <div class="card-content">
+                        <h3>City-BuildingsOnly</h3>
+                        <a href="/City-BuildingsOnly.html" class="card-link">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="assets/City2.png" alt="City Buildings Roads" class="card-img">
+                    <div class="card-content">
+                        <h3>City-BuildingsRoads</h3>
+                        <a href="/City-BuildingsRoads.html" class="card-link">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
+
 </html>

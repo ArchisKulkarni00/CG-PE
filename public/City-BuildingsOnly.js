@@ -4,8 +4,6 @@ import Stats from './jsm/libs/stats.module.js'
 
 import TileCollection from './TileCollection.js'
 import Skybox from './Skybox.js'
-import RoadNetwork from './Roads.js'
-import TileCity from './TileCity.js'
 
 const scene = new THREE.Scene()
 
@@ -16,8 +14,6 @@ camera.position.z = 2
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
-// renderer.shadowMap.enabled = true;
-// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
@@ -28,16 +24,16 @@ scene.add( skyLight );
 const light = new THREE.AmbientLight( 0x222222 );
 scene.add( light );
 
-// const sunLight = new THREE.DirectionalLight( 0xffff00, 20 );
-// const sunTarget = new THREE.Object3D(); 
-// sunTarget.position.set(5,0,0);
-// scene.add(sunTarget);
-// sunLight.position.set(-5,5,0);
-// sunLight.castShadow = true;
-// sunLight.target = sunTarget;
-// scene.add( sunLight );
-// const helper = new THREE.DirectionalLightHelper(sunLight, 1);
-// scene.add(helper);
+const sunLight = new THREE.DirectionalLight( 0xffff00, 20 );
+const sunTarget = new THREE.Object3D(); 
+sunTarget.position.set(5,0,0);
+scene.add(sunTarget);
+sunLight.position.set(-5,5,0);
+sunLight.castShadow = true;
+sunLight.target = sunTarget;
+scene.add( sunLight );
+const helper = new THREE.DirectionalLightHelper(sunLight, 1);
+scene.add(helper);
 
 const skybox = new Skybox("assets/skybox1.png", 300);
 
@@ -46,35 +42,12 @@ skybox.load((mesh) => {
   console.log(mesh);
 });
 
-// const tilesCollection = new TileCollection(scene);
-// for (let i = 0; i < 10; i++) {
-//     for (let j = 0; j < 10; j++) {
-//         tilesCollection.addTile(i,j,null, 25);
-//     }
-// }
-
-// const roads = new RoadNetwork(10, 10, 0.7, 0.15);
-// const roadGroup = roads.createRoadMeshes();
-// scene.add(roadGroup);
-
-const tileE = new TileCity(scene, {
-  tileSize: 1,
-  rows: 100,
-  cols: 100,
-  roadProbability: 0.25,
-  randomHeights: true,
-  minHeight: 0.3,
-  maxHeight: 5,
-  randomFootprint: true,
-  minScaleXZ: 0.4,
-  maxScaleXZ: 0.9,
-  roadLift: 0.03,
-  maxBuildings: 5000
-});
-tileE.setPosition(0, 0, 0);
-tileE.generate();
-
-
+const tilesCollection = new TileCollection(scene);
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+        tilesCollection.addTile(i,j,null, 25);
+    }
+}
 
 window.addEventListener(
     'resize',

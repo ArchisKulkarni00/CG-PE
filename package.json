@@ -1,26 +1,27 @@
 {
   "name": "threejs-boilerplate",
   "version": "1.0.0",
-  "description": "A Threejs Boilerplate to aid in quick prototyping",
+  "description": "A Threejs Based visualizer for point clouds and city visualization",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sean-Bradley/Threejs-Boilerplate.git"
+    "url": "git+https://github.com/ArchisKulkarni00/CG-PE.git"
   },
   "keywords": [
     "threejs",
     "boilerplate",
-    "threejs boilerplate"
+    "threejs boilerplate",
+    "threejs visualizer"
   ],
-  "author": "Sean Bradley",
+  "author": "Archis Kulkarni",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sean-Bradley/Threejs-Boilerplate/issues"
+    "url": "https://github.com/ArchisKulkarni00/CG-PE/issues"
   },
-  "homepage": "https://github.com/Sean-Bradley/Threejs-Boilerplate#readme",
+  "homepage": "https://github.com/ArchisKulkarni00/CG-PE#readme",
   "dependencies": {
     "express": "^4.18.2",
     "three": "^0.157.0"
