@@ -304,7 +304,6 @@ _generateRoadsAndBuildings(rows, cols, roadProbability, maxBuildings = Infinity)
         // Clone random building asset
         const proto = assets[Math.floor(Math.random() * assets.length)];
         const building = proto.clone(true);
-        console.log(building);
         building.children[0].material.shininess = 2;
 
 

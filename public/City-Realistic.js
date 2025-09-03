@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import { OrbitControls } from './jsm/controls/OrbitControls.js'
-import Stats from './jsm/libs/stats.module.js'
 
 import Skybox from './Skybox.js'
 import TileCityRealistic from './TileCityRealistic.js'
+import CustomStats from './Stats.js'
 
 const scene = new THREE.Scene()
 
@@ -73,15 +73,30 @@ window.addEventListener(
     false
 )
 
-const stats = Stats()
-document.body.appendChild(stats.dom)
+// const stats = Stats()
+// stats.showPanel(0)
+// stats.dom.style.position = 'absolute';
+// stats.dom.style.top = '0px';
+// stats.dom.style.left = '0px';
+// document.body.appendChild(stats.dom)
 
+// const stats1 = Stats()
+// stats1.showPanel(1)
+// stats1.dom.style.position = 'absolute';
+// stats1.dom.style.top = '50px';
+// stats1.dom.style.left = '0px';
+// document.body.appendChild(stats1.dom)
+
+const stats = new CustomStats();
+stats.showAllPanels();
 
 function animate() {
     requestAnimationFrame(animate)
     controls.update()
     render()
-    stats.update()
+    // stats.update()
+    // stats1.update()
+    stats.updateAll();
 }
 
 function render() {
