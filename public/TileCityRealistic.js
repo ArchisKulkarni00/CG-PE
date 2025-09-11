@@ -57,6 +57,11 @@ export default class TileCityRealistic {
   setPosition(x, y, z) {
     this.group.position.set(x, y, z);
   }
+  setRotation(x, y, z) {
+    this.group.rotation.x = x;
+    this.group.rotation.y = y;
+    this.group.rotation.z = z;
+  }
 
   // Generate the road / building grids and produce instanced meshes
   generate() {
