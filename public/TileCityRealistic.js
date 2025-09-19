@@ -36,7 +36,8 @@ export default class TileCityRealistic {
     const groundGeo = new THREE.PlaneGeometry();
     groundGeo.rotateX(3 * Math.PI / 2);
     groundGeo.scale(groundPlaneSize, 1, groundPlaneSize);
-    const groundMat = new THREE.MeshBasicMaterial({ color: 0x005500 });
+    const groundMat = new THREE.MeshStandardMaterial({ color: 0x005500 });
+    groundMat.shininess = 1;
     const groundPlane = new THREE.Mesh(groundGeo, groundMat);
     groundPlane.receiveShadow = true;
     groundPlane.castShadow = true;
