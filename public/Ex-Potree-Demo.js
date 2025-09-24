@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import Skybox from "./Skybox.js";
-import TileCityRealistic from './TileCityRealistic.js'
+import Skybox from "./Cmp-Skybox.js";
+import TileCityRealistic from './Cmp-TileCityRealistic.js'
 import { addToPotree } from './utils.js';
 
 // POTREE INIT CODE

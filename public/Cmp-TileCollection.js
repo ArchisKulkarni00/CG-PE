@@ -1,4 +1,4 @@
-import Tile from "./Tile.js";
+import Tile from "./Cmp-Tile.js";
 
 export default class TileCollection {
   constructor(scene, tileSize = 10) {

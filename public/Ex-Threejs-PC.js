@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
 import { PLYLoader } from './jsm/loaders/PLYLoader.js';
-import CustomStats from './Stats.js'
-import Environment from './Environment.js'
+import CustomStats from './Cmp-Stats.js'
+import Environment from './Cmp-Environment.js'
 import { getFakeLightMaterial, getGradientMaterial } from './utils.js';
 
 const scene = new THREE.Scene()

@@ -2,10 +2,10 @@ import * as THREE from 'three'
 import { OrbitControls } from './jsm/controls/OrbitControls.js'
 import Stats from './jsm/libs/stats.module.js'
 
-import TileCollection from './TileCollection.js'
-import Skybox from './Skybox.js'
-import RoadNetwork from './Roads.js'
-import TileCity from './TileCity.js'
+import TileCollection from './Cmp-TileCollection.js'
+import Skybox from './Cmp-Skybox.js'
+import RoadNetwork from './Cmp-Roads.js'
+import TileCity from './Cmp-TileCity.js'
 
 const scene = new THREE.Scene()
 

@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
-import TileCity from './TileCity.js'
-import CustomStats from './Stats.js'
-import Environment from './Environment.js'
+import TileCityRealistic from './Cmp-TileCityRealistic.js'
+import CustomStats from './Cmp-Stats.js'
+import Environment from './Cmp-Environment.js'
 
 const scene = new THREE.Scene()
 
@@ -16,7 +16,7 @@ const camera = environment.camera;
 environment.loadSkybox("assets/skybox1.png", 300);
 
 
-const tileE = new TileCity(scene, {
+const tileE = new TileCityRealistic(scene, {
   tileSize: 1,
   rows: 100,
   cols: 100,
@@ -46,15 +46,30 @@ window.addEventListener(
     false
 )
 
+// const stats = Stats()
+// stats.showPanel(0)
+// stats.dom.style.position = 'absolute';
+// stats.dom.style.top = '0px';
+// stats.dom.style.left = '0px';
+// document.body.appendChild(stats.dom)
+
+// const stats1 = Stats()
+// stats1.showPanel(1)
+// stats1.dom.style.position = 'absolute';
+// stats1.dom.style.top = '50px';
+// stats1.dom.style.left = '0px';
+// document.body.appendChild(stats1.dom)
+
 const stats = new CustomStats();
 stats.showAllPanels();
-
 
 function animate() {
     requestAnimationFrame(animate)
     controls.update()
     render()
-    stats.updateAll()
+    // stats.update()
+    // stats1.update()
+    stats.updateAll();
 }
 
 function render() {

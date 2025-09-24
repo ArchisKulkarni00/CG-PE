@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from './jsm/controls/OrbitControls.js';
-import Skybox from './Skybox.js';
+import Skybox from './Cmp-Skybox.js';
 
 export default class Environment {
   constructor(scene, renderer) {

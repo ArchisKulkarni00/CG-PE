@@ -1,10 +1,10 @@
 import * as THREE from 'three'
 
-import TileCityRealistic from './TileCityRealistic.js'
-import CustomStats from './Stats.js'
+import TileCityRealistic from './Cmp-TileCityRealistic.js'
+import CustomStats from './Cmp-Stats.js'
 
 import { Potree } from './potree-core/dist/index.js'
-import Environment from './Environment.js'
+import Environment from './Cmp-Environment.js'
 
 const scene = new THREE.Scene()
 

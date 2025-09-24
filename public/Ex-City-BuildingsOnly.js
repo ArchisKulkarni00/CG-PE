@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
-import TileCollection from './TileCollection.js'
-import CustomStats from './Stats.js'
-import Environment from './Environment.js'
+import TileCollection from './Cmp-TileCollection.js'
+import CustomStats from './Cmp-Stats.js'
+import Environment from './Cmp-Environment.js'
 
 const scene = new THREE.Scene()
 
