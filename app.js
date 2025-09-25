@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const convertRoute = require("./routes/converter.js");
+
+app.use("/convert", convertRoute);
 
 app.use(express.static(__dirname + '/public'))
 app.use('/potree-core/',express.static(__dirname + '/node_modules/potree-core'))

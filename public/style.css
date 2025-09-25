@@ -90,6 +90,16 @@ body {
     margin-top: 10px;
     transition: background-color 0.3s ease;
 }
+.converter-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #34db47;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
 
 .card-link:hover {
     background-color: #2980b9;

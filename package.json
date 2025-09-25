@@ -25,6 +25,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "three": "^0.157.0",
-    "potree-core": "^2.0.11"
+    "potree-core": "^2.0.11",
+    "multer": "^2.0.2"
   }
 }

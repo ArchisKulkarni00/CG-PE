@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Potree Converter Interface</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .upload-area {
+      border: 2px dashed #3498db;
+      border-radius: 8px;
+      padding: 30px;
+      background: #fff;
+      color: #555;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.2s ease;
+    }
+    .upload-area.dragover {
+      background: #ecf6fc;
+    }
+    .output-area {
+      margin: 20px 0;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #777;
+      margin-top: 5px;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 10px;
+      background: #fff;
+      border-radius: 5px;
+      font-family: monospace;
+      text-align: left;
+      white-space: pre-wrap;
+      min-height: 80px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background-color: #2980b9;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Convert LAS/LAZ to Potree</h1>
+
+    <!-- Drag & Drop + File Input -->
+    <div id="uploadArea" class="upload-area">
+      Drag & drop a <strong>.las, .laz</strong> file here or click to select
+      <input type="file" id="fileInput" accept=".laz,.las" hidden />
+    </div>
+
+    <!-- Output folder input -->
+    <div class="output-area">
+      <label for="outputFolder"><strong>Output folder name:</strong></label><br>
+      <input type="text" id="outputFolder" placeholder="Leave empty for default" />
+      <div class="note">
+        Output will be generated under: <code>./public/converted/[folderName]</code>  
+        (default folder: <code>default_project</code>)
+      </div>
+    </div>
+
+    <!-- Convert button -->
+    <button class="btn" onclick="startConversion()">Convert</button>
+
+    <!-- Status / Log -->
+    <div id="status" class="status">Waiting for file...</div>
+  </div>
+
+  <script>
+    const uploadArea = document.getElementById("uploadArea");
+    const fileInput = document.getElementById("fileInput");
+    const statusBox = document.getElementById("status");
+    const outputFolderInput = document.getElementById("outputFolder");
+
+    // Drag & drop events
+    uploadArea.addEventListener("click", () => fileInput.click());
+    uploadArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadArea.classList.add("dragover");
+    });
+    uploadArea.addEventListener("dragleave", () => {
+      uploadArea.classList.remove("dragover");
+    });
+    uploadArea.addEventListener("drop", (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove("dragover");
+      fileInput.files = e.dataTransfer.files;
+      statusBox.textContent = "Selected file: " + fileInput.files[0].name;
+    });
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length > 0) {
+        statusBox.textContent = "Selected file: " + fileInput.files[0].name;
+      }
+    });
+
+    // Trigger conversion
+    async function startConversion() {
+      const file = fileInput.files[0];
+      let folderName = outputFolderInput.value.trim();
+      if (!folderName) folderName = "default_project";
+
+      if (!file) {
+        alert("Please select a .laz or .las file first.");
+        return;
+      }
+
+      statusBox.textContent = "Uploading and starting conversion...\n";
+
+      const formData = new FormData();
+      formData.append("pointcloud", file);
+      formData.append("outputPath", `${folderName}`);
+
+      try {
+        const res = await fetch("/convert", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        statusBox.textContent += "\n" + 
+          (data.success 
+            ? `✅ Conversion finished.\nOutput: ${data.outputPath}` 
+            : `❌ Error: ${data.error}`);
+      } catch (err) {
+        statusBox.textContent += "\n❌ Failed: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
