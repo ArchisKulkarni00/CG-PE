@@ -32,7 +32,7 @@ router.post("/", upload.single("pointcloud"), (req, res) => {
 		console.log("STDOUT:", stdout);
 		console.log("STDERR:", stderr);
 		
-		fs.unlinkSync(uploadedFile.path);
+		fs.unlinkSync(newPath);
 
 		if (error) {
 			return res.json({ success: false, error: stderr || error.message });

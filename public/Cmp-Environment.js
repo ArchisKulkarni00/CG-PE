@@ -43,10 +43,10 @@ export default class Environment {
     this.scene.add(this.sunLight);
 
     // Helpers
-    this.lightHelper = new THREE.DirectionalLightHelper(this.sunLight, 1);
-    this.scene.add(this.lightHelper);
-    this.cameraHelper = new THREE.CameraHelper(this.sunLight.shadow.camera);
-    this.scene.add(this.cameraHelper);
+    // this.lightHelper = new THREE.DirectionalLightHelper(this.sunLight, 1);
+    // this.scene.add(this.lightHelper);
+    // this.cameraHelper = new THREE.CameraHelper(this.sunLight.shadow.camera);
+    // this.scene.add(this.cameraHelper);
 
     // Skybox placeholder
     this.skybox = null;

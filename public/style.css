@@ -75,7 +75,13 @@ body {
 }
 
 .card-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 0.8rem;
     margin-bottom: 10px;
     color: #333;
 }
