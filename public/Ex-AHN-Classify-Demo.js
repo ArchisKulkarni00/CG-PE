@@ -4,6 +4,7 @@ import CustomStats from './Cmp-Stats.js'
 
 import { Potree } from './potree-core/dist/index.js'
 import Environment from './Cmp-Environment.js'
+import UIPanel from './Cmp-UI.js'
 
 const scene = new THREE.Scene()
 
@@ -62,7 +63,7 @@ window.addEventListener(
 
 
 const stats = new CustomStats();
-stats.showAllPanels();
+// stats.showAllPanels();
 
 function animate() {
     requestAnimationFrame(animate)
