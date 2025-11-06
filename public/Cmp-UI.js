@@ -1,66 +1,54 @@
-// UIPanel.js
-export default class UIPanel {
-  constructor(options = {}) {
-    this.title = options.title || "Info Panel";
-    this.width = options.width || "150px";
-
-    this.createPanel();
-    this.createToggleButton();
-    this.attachEvents();
+export default function generateSceneHierarchy(scene) {
+  const hierarchyContainer = document.getElementById("sceneHierarchy");
+  if (!hierarchyContainer) {
+    console.warn("⚠️ No hierarchy container found in DOM");
+    return;
   }
 
-  createPanel() {
-    this.panel = document.createElement("div");
-    this.panel.classList.add("ui-panel");
-    this.panel.style.width = this.width;
+  hierarchyContainer.innerHTML = ""; // clear previous content
 
-    const header = document.createElement("h2");
-    header.innerText = this.title;
-    this.panel.appendChild(header);
+  const sceneJSON = scene.toJSON().object;
+  const children = sceneJSON.children || [];
 
-    this.content = document.createElement("div");
-    this.panel.appendChild(this.content);
+  // Recursive helper function to build DOM tree
+  function buildTree(objects, depth = 0) {
+    const container = document.createElement("div");
 
-    document.body.appendChild(this.panel);
-  }
+    objects.forEach(obj => {
+      const item = document.createElement("div");
+      item.classList.add("hierarchy-item");
+      item.style.marginLeft = `${depth * 15}px`;
 
-  createToggleButton() {
-    this.button = document.createElement("button");
-    this.button.innerHTML = "☰";
-    // this.button.innerHTML = ">";
-    this.button.classList.add("ui-toggle-btn");
+      const icon = document.createElement("span"); 
+      icon.innerHTML = "&#166;&#8213;"; 
+      icon.style.marginRight = "6px";
 
-    document.body.appendChild(this.button);
-  }
+      const label = document.createElement("span");
+      const name = obj.name || obj.type || "Unnamed Object";
 
-  attachEvents() {
-    this.isOpen = false;
-    this.button.addEventListener("click", () => {
-      if(this.isOpen){
-        // this.button.innerHTML = ">";
-        // this.button.offsetLeft = 0;
+      // Determine icon based on object type/name
+      let symbol = "🔳"; // default
+      const lower = name.toLowerCase();
+      if (lower.includes("light")) symbol = "💡";
+      else if (lower.includes("group")) symbol = "📁";
+      else if (lower.includes("mesh")) symbol = "📦";
+      else if (lower.includes("camera")) symbol = "📷";
+
+      label.textContent = `${symbol} ${name}`;
+      label.classList.add("hierarchy-label");
+
+      item.appendChild(icon);
+      item.appendChild(label);
+      container.appendChild(item);
+
+      // Recursively build children
+      if (obj.children && obj.children.length > 0) {
+        container.appendChild(buildTree(obj.children, depth + 1));
       }
-      else{
-        // this.button.innerHTML = "<";
-        // this.button.offsetLeft = 0;
-      }
-      this.isOpen = !this.isOpen;
-      this.panel.classList.toggle("open", this.isOpen);
-      this.button.classList.toggle("open", this.isOpen);
     });
+
+    return container;
   }
 
-  addText(info) {
-    const p = document.createElement("p");
-    p.innerText = info;
-    this.content.appendChild(p);
-  }
-
-  addElement(element) {
-    this.content.appendChild(element);
-  }
-
-  clear() {
-    this.content.innerHTML = "";
-  }
+  hierarchyContainer.appendChild(buildTree(children));
 }
