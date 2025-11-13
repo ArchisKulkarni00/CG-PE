@@ -2,6 +2,8 @@
 public/potree/
 public/converted/
 uploads/
+PythonScripts/input_buildings/
+PythonScripts/output_buildings/
 
 # Logs
 logs
