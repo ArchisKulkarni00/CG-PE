@@ -17,7 +17,7 @@ const camera = environment.camera;
 environment.loadSkybox("assets/skybox1.png", 300);
 
 const loader = new PLYLoader();
-loader.load('./potree/pointclouds/Vegetation.ply', geometry => {
+loader.load('./assets/Point-Clouds/Vegetation.ply', geometry => {
     geometry.computeBoundingBox();
 
     const bbox = geometry.boundingBox;

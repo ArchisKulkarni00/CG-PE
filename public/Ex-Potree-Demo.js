@@ -71,7 +71,7 @@ addToPotree(PotreeScene, coneMesh);
 // ADDING POINT CLOUD
 
 // Lion
-Potree.loadPointCloud("./potree/pointclouds/lion_takanawa/cloud.js", "lion", function(e){
+Potree.loadPointCloud("./assets/Point-Clouds/lion_takanawa/cloud.js", "lion", function(e){
     viewer.scene.addPointCloud(e.pointcloud);
     
     let material = e.pointcloud.material;

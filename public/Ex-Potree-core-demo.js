@@ -36,7 +36,7 @@ tileE.setPosition(0, 0, 0);
 tileE.generate();
 
 const pointClouds = [];
-const baseUrl = "./potree/pointclouds/lion_takanawa/";
+const baseUrl = "./assets/Point-Clouds/lion_takanawa/";
 const potree = new Potree();
 potree.loadPointCloud("cloud.js", baseUrl,).then(function(pco) {
   pco.material.size = 1.0;
